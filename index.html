@@ -8,27 +8,35 @@
     <link rel="stylesheet" href="style.css">
     <title>sorting visulizer</title>
 </head>
-
 <body>
-    <div class="container">
-        <div class="container2" id="container">
-            <!-- <div class="pols" style="height:60vh;width:40px;position: absolute;left:0px;">60</div>
-            <div class="pols" style="height:10vh;width:40px;position: absolute;left:43px;">10</div>
-            <div class="pols" style="height:10vh;width:40px;position: absolute;left:86px;">10</div>
-            <div class="pols" style="height:10vh;width:40px;position: absolute;left:129px;">10</div> -->
+
+    <div class="sortcon">
+        <div class="container">
+            <div class="container2" id="container2"></div>
         </div>
-        <div>
-            <button onclick="generate()">generate</button>
-            <!-- <button onclick="swap()">swap</button> -->
-            <button onclick="bubbleSort()"> bubble sort</button>
-            <button onclick="selectionSort()"> selection sort</button>
-            <input type="range" id="range" min="4" max="16" value="8" onchange="generate()">
+        <div class="sap">
+            <div>VS</div>
+        </div>
+        <div class="container">
+            <div class="container2" id="container2"></div>
         </div>
     </div>
+
+    
+
+    <div>
+        <button onclick="generate()">generate</button>
+        <button onclick="bubbleSort()">bubble sort</button>
+        <button onclick="selectionSort()">selection sort</button>
+        <button onclick="start()">start</button>
+        <input type="range" id="range" min="4" max="16" value="12" onchange="generate()">
+    </div>
+
     <script src="script.js"></script>
     <script>
         generate()
     </script>
+
 </body>
 
 </html>

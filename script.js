@@ -1,90 +1,111 @@
 const defColor = "#14a76c";
 const checkColor = "#ffe400";
 const swapColor = "#ff652f";
-const container = document.getElementById("container");
+
+const container = document.getElementsByClassName("container2");
 const range = document.getElementById("range");
-// const pol = document.getElementsByClassName("pols");
 var arr = [];
+var arr2 = [];
+
 function generate() {
   arr = [];
-  container.innerHTML = "";
+  arr2 = [];
+  container[0].innerHTML = container[1].innerHTML = "";
   el = range.value;
-  w = Math.floor((container.offsetWidth - (el - 1) * 4) / el);
+  w = Math.floor((container[0].offsetWidth - (el - 1) * 4) / el);
   for (let i = 0; i < el; i++) {
     ele = Math.floor(Math.random() * 50) + 10;
     while (arr.includes(ele)) {
       ele = Math.floor(Math.random() * 50) + 10;
     }
-    arr[i] = ele;
-    container.innerHTML += `<div class="pols" id="${ele}" style="height:${
+    arr[i] = arr2[i] = ele;
+    container[0].innerHTML += `<div class="pols" id="a${ele}" style="height:${
+      arr[i]
+    }vh;width:${w}px;position: absolute;left:${w * i + 4 * i}px;">${
+      arr[i]
+    }</div>`;
+    container[1].innerHTML += `<div class="pols" id="b${ele}" style="height:${
       arr[i]
     }vh;width:${w}px;position: absolute;left:${w * i + 4 * i}px;">${
       arr[i]
     }</div>`;
   }
-  container.style.width = w * el + (el - 1) * 4 + "px";
+  var wcal = w * el + (el - 1) * 4 + "px";
+  container[0].style.width = container[1].style.width = wcal;
 }
 
-async function swap(r1, r2) {
-  // function swap() {
-  //   r1 = Math.floor(Math.random() * (arr.length-1));
-  //   r2 = Math.floor(Math.random() * (arr.length-1));
-  //   while (r1==r2){
-  //     r2 = Math.floor(Math.random() * (arr.length-1));
-  //   }
+class Aswap {
+  constructor(c) {
+    this.c = c;
+  }
+  async swap(r1, r2) {
+    var p1, p2;
+    if (this.c == "a") {
+      p1 = document.getElementById(`${this.c}${arr[r1]}`);
+      p2 = document.getElementById(`${this.c}${arr[r2]}`);
+    } else {
+      p1 = document.getElementById(`${this.c}${arr2[r1]}`);
+      p2 = document.getElementById(`${this.c}${arr2[r2]}`);
+    }
+    p1.style.background = p2.style.background = swapColor;
 
-  var temp = arr[r1];
-  arr[r1] = arr[r2];
-  arr[r2] = temp;
+    var ofset1 = p1.offsetLeft;
+    var ofset2 = p2.offsetLeft;
 
-  p1 = document.getElementById(`${arr[r1]}`);
-  p2 = document.getElementById(`${arr[r2]}`);
-  p1.style.background = swapColor;
-  p2.style.background = swapColor;
-  ofset1 = p1.offsetLeft;
-  ofset2 = p2.offsetLeft;
+    p1.style.left = ofset2 + "px";
+    p2.style.left = ofset1 + "px";
+    await new Promise((r) => setTimeout(r, 300));
+    p1.style.background = p2.style.background = defColor;
+  }
 
-  p1.style.left = ofset2 + "px";
-  p2.style.left = ofset1 + "px";
-  await new Promise((r) => setTimeout(r, 300));
-  p1.style.background = defColor;
-  p2.style.background = defColor;
-}
+  async check(r1, r2) {
+    var p1, p2;
+    if (this.c == "a") {
+      p1 = document.getElementById(`${this.c}${arr[r1]}`);
+      p2 = document.getElementById(`${this.c}${arr[r2]}`);
+    } else {
+      p1 = document.getElementById(`${this.c}${arr2[r1]}`);
+      p2 = document.getElementById(`${this.c}${arr2[r2]}`);
+    }
+    p1.style.background = p2.style.background = checkColor;
 
-async function check(r1, r2) {
-  p1 = document.getElementById(`${arr[r1]}`);
-  p2 = document.getElementById(`${arr[r2]}`);
-  p1.style.background = checkColor;
-  p2.style.background = checkColor;
-  await new Promise((r) => setTimeout(r, 300));
-  p1.style.background = defColor;
-  p2.style.background = defColor;
+    await new Promise((r) => setTimeout(r, 300));
+    p1.style.background = p2.style.background = defColor;
+  }
 }
 
 async function bubbleSort() {
   for (var i = 0; i < arr.length; i++) {
     for (var j = 0; j < arr.length - i - 1; j++) {
-      await check(j, j + 1);
+      await obja.check(j, j + 1);
       if (arr[j] > arr[j + 1]) {
-        await swap(j, j + 1);
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        await obja.swap(j, j + 1);
       }
     }
   }
 }
 
 async function selectionSort() {
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 0; i < arr2.length; i++) {
     let min = i;
-    for (var j = i + 1; j < arr.length; j++) {
-      await check(min, j);
-      if (arr[min] > arr[j]) {
+    for (var j = i + 1; j < arr2.length; j++) {
+      await objb.check(min, j);
+      if (arr2[min] > arr2[j]) {
         min = j;
       }
     }
     if (i != min) {
-      await swap(i, min);
-      // [arr[ i ],arr[min]]= [arr[min],arr[ i ]];
+      [arr2[i], arr2[min]] = [arr2[min], arr2[i]];
+      await objb.swap(i, min);
     }
   }
-  return arr;
+}
+
+var obja = new Aswap("a");
+var objb = new Aswap("b");
+
+function start(){
+  bubbleSort();
+  selectionSort();
 }
