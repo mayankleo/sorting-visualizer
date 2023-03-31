@@ -4,6 +4,10 @@ const swapColor = "#ff652f";
 
 const container = document.getElementsByClassName("container2");
 const range = document.getElementById("range");
+const sorts1 = document.getElementById("sorts1");
+const sorts2 = document.getElementById("sorts2");
+const s1 = document.getElementById("s1");
+const s2 = document.getElementById("s2");
 var arr = [];
 var arr2 = [];
 
@@ -77,10 +81,11 @@ class Aswap {
 async function bubbleSort() {
   for (var i = 0; i < arr.length; i++) {
     for (var j = 0; j < arr.length - i - 1; j++) {
-      await obja.check(j, j + 1);
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         await obja.swap(j, j + 1);
+      }else{
+        await obja.check(j, j + 1);
       }
     }
   }
@@ -93,7 +98,7 @@ async function selectionSort() {
       await objb.check(min, j);
       if (arr2[min] > arr2[j]) {
         min = j;
-      }
+      } 
     }
     if (i != min) {
       [arr2[i], arr2[min]] = [arr2[min], arr2[i]];
@@ -102,10 +107,27 @@ async function selectionSort() {
   }
 }
 
+async function insertionSort() {
+  let j;
+  for (let i = 1; i < arr.length; i++) {
+    j = i - 1;
+    await obja.check(j, j + 1);
+    while (j >= 0 && arr[j] > arr[j + 1]) {
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      await obja.swap(j, j + 1);
+      j -= 1;
+    }
+  }
+}
+
 var obja = new Aswap("a");
 var objb = new Aswap("b");
 
-function start(){
+function start() {
   bubbleSort();
   selectionSort();
+}
+
+function sortme(){
+
 }
