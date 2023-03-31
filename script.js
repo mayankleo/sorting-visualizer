@@ -6,13 +6,20 @@ const container = document.getElementsByClassName("container2");
 const range = document.getElementById("range");
 const sorts1 = document.getElementById("sorts1");
 const sorts2 = document.getElementById("sorts2");
-const s1 = document.getElementById("s1");
-const s2 = document.getElementById("s2");
+const s1c = document.getElementById("s1c");
+const s1s = document.getElementById("s1s");
+const s2c = document.getElementById("s2c");
+const s2s = document.getElementById("s2s");
 var obja, objb;
+
+function rangevalue(x){
+  document.getElementById("rangev").innerHTML = x;
+}
 
 function generate() {
   obja = new Aswap("a");
   objb = new Aswap("b");
+  obja.checkScore.innerHTML=obja.swapScore.innerHTML=objb.checkScore.innerHTML=objb.swapScore.innerHTML=0;
   container[0].innerHTML = container[1].innerHTML = "";
   el = range.value;
   w = Math.floor((container[0].offsetWidth - (el - 1) * 4) / el);
@@ -35,6 +42,8 @@ class Aswap {
   arr = [];
   constructor(c) {
     this.c = c;
+    this.checkScore = document.getElementById(`sc${this.c}`);
+    this.swapScore = document.getElementById(`ss${this.c}`);
   }
   async swap(r1, r2) {
     let p1 = document.getElementById(`${this.c}${this.arr[r1]}`);
@@ -50,6 +59,7 @@ class Aswap {
 
     await new Promise((r) => setTimeout(r, 300));
     p1.style.background = p2.style.background = defColor;
+    this.swapScore.innerHTML=Number(this.swapScore.innerHTML)+1;
   }
 
   async check(r1, r2) {
@@ -60,16 +70,16 @@ class Aswap {
 
     await new Promise((r) => setTimeout(r, 300));
     p1.style.background = p2.style.background = defColor;
+    this.checkScore.innerHTML= Number(this.checkScore.innerHTML)+1;
   }
 
   async bubbleSort() {
     for (let i = 0; i < this.arr.length; i++) {
       for (let j = 0; j < this.arr.length - i - 1; j++) {
+        await this.check(j, j + 1);
         if (this.arr[j] > this.arr[j + 1]) {
           [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
           await this.swap(j, j + 1);
-        } else {
-          await this.check(j, j + 1);
         }
       }
     }
@@ -92,15 +102,23 @@ class Aswap {
   }
 
   async insertionSort() {
-    let j;
+    let j,s=0;
     for (let i = 1; i < this.arr.length; i++) {
       j = i - 1;
-      await this.check(j, j + 1);
+      if(s==0){
+        await this.check(j, j + 1);
+        s=1;
+      }
       while (j >= 0 && this.arr[j] > this.arr[j + 1]) {
+        if(s==0){
+          await this.check(j, j + 1);
+        }
         [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
         await this.swap(j, j + 1);
         j -= 1;
+        s=0;
       }
+      s=0;
     }
   }
 }
@@ -116,7 +134,7 @@ function startSorting() {
   }else if(sort1=='insertion'){
     obja.insertionSort();
   }else{
-    console.log('wtf - a !!!')
+    console.log('Invalid - a !!!')
   }
 
   if(sort2=='bubble'){
@@ -126,6 +144,6 @@ function startSorting() {
   }else if(sort2=='insertion'){
     objb.insertionSort();
   }else{
-    console.log('wtf - b !!!')
+    console.log('Invalid - b !!!')
   }
 }

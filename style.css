@@ -2,19 +2,24 @@
 body {
     background-color: #303030;
     margin: 0;
-    width: 100%;
-    height: 100vh;
-    flex-direction: column;
     text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-family: Rubik;
+    font-weight: 700;
+}
+
+.main-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #272727;
 }
 
 .sortcon{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #272727;
-    padding: 0 50px;
+    padding: 10px 50px 0 50px;
 }
 
 .container {
@@ -59,10 +64,110 @@ body {
 }
 .fun-selector{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.shc,.shs{
+    color: white;
+    margin: 0 10PX;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+.shc{
+    color: #ffe400;
+}
+.shs{
+color: #ff652f;
+}
+.s-con{
+    display: flex;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 15px;
+}
+.sccolor{
+    color: #ffe400;
+    font-size: 1.3rem;
+}
+.sscolor{
+    color: #ff652f;
+    font-size: 1.3rem;
+}
+.s-selector{
+    width: 40%;
+    font-weight: 700;
+    color: #fff;
+    background-color: #272727;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 5px;
+    cursor: pointer;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.s-selector:hover{
+    color: #14a76c;
+}
+.s-selector>*{
+    font-weight: 600;
+}
+
+.main-fluid{
+    height: 100%;
+    width: 100vw;
+    /* box-shadow: rgb(255, 0, 0) 0px 0px 0px 1px inset; */
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+.main-con{
+    width: 95%;
+    height: 100%;
+    box-shadow: rgba(255, 255, 255, 1) 0px 0px 0px 1px inset;
+    border-radius: 15px;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-h2{
-    color: white;
-    margin: 0 10PX;
+
+button{
+    height: 2.5rem;
+    width: 150px;
+    color: #fff;
+    background-color: #272727;
+    border: 1px solid #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+button:hover{
+    border: 2px solid #14a76c;
+    color: #14a76c;
+}
+
+
+.rangeiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    height: 2.3rem;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 10px;
+}
+.rangeiv:hover{
+    border: 1px solid #14a76c;
+}
+#range{
+    margin: 0 10px;
+}
+#rangev{
+    width: 2pc;
+    margin: 5px;
+    color: #fff;
 }

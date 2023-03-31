@@ -10,39 +10,65 @@
 </head>
 
 <body>
-
-    <div class="sortcon">
-        <div class="container">
-            <div class="fun-selector">
-                <select id="sorts1">
-                    <option value="bubble">bubble sort</option>
-                    <option value="selection">selection sort</option>
-                    <option value="insertion">insertion sort</option>
-                </select>
-                <h2 id="s1">score</h2>
+    <div class="main-container">
+        <div class="sortcon">
+            <div class="container">
+                <div class="fun-selector">
+                    <select class="s-selector" id="sorts1">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                    </select>
+                    <div class="s-con">
+                        <div>
+                            <div class="shc">Checks</div>
+                            <div id="sca" class="sccolor">0</div>
+                        </div>
+                        <div>
+                            <div class="shs">Swaps</div>
+                            <div id="ssa" class="sscolor">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container2" id="container2"></div>
             </div>
-            <div class="container2" id="container2"></div>
-        </div>
-        <div class="sap">
-            <div>VS</div>
-        </div>
-        <div class="container">
-            <div class="fun-selector">
-                <select id="sorts2">
-                    <option value="bubble">bubble sort</option>
-                    <option value="selection">selection sort</option>
-                    <option value="insertion">insertion sort</option>
-                </select>
-                <h2 id="s2">score</h2>
+            <div class="sap">
+                <div>VS</div>
             </div>
-            <div class="container2" id="container2"></div>
+            <div class="container">
+                <div class="fun-selector">
+                    <select class="s-selector" id="sorts2">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                    </select>
+                    <div class="s-con">
+                        <div>
+                            <div class="shc">Checks</div>
+                            <div id="scb" class="sccolor">0</div>
+                        </div>
+                        <div>
+                            <div class="shs">Swaps</div>
+                            <div id="ssb" class="sscolor">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container2" id="container2"></div>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <button onclick="generate()">Generate</button>
-        <button onclick="startSorting()">Start Sorting</button>
-        <input type="range" id="range" min="4" max="16" value="12" onchange="generate()">
+        <div class="main-fluid">
+            <div class="main-con">
+                <button onclick="generate()">Generate</button>
+                <button onclick="startSorting()">Start Sorting</button>
+                <div class="rangeiv">
+                    <input type="range" id="range" min="4" max="16" value="8" onchange="generate()"
+                        oninput="rangevalue(this.value)">
+                    <div id="rangev">8</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
