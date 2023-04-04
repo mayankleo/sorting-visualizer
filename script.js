@@ -4,12 +4,14 @@ const swapColor = "#ff652f";
 
 const container = document.getElementsByClassName("container2");
 const range = document.getElementById("range");
+const rangetext = document.getElementById("rangev");
 const sorts1 = document.getElementById("sorts1");
 const sorts2 = document.getElementById("sorts2");
 var obja, objb;
 
 function rangevalue(x) {
-  document.getElementById("rangev").innerHTML = x;
+  rangetext.innerHTML = x;
+
 }
 
 function generate() {

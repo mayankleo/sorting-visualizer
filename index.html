@@ -60,12 +60,12 @@
         <div class="main-fluid">
             <div class="main-con">
                 <button onclick="generate()">Generate</button>
-                <button onclick="startSorting()">Start Sorting</button>
                 <div class="rangeiv">
                     <input type="range" id="range" min="4" max="16" value="8" onchange="generate()"
-                        oninput="rangevalue(this.value)">
+                    oninput="rangevalue(this.value)">
                     <div id="rangev">8</div>
                 </div>
+                <button onclick="startSorting()">Start Sorting</button>
             </div>
         </div>
 
@@ -73,7 +73,7 @@
 
     <script src="script.js"></script>
     <script>
-        generate()
+        generate();
     </script>
 
 </body>
