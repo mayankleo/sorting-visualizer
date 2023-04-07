@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
 body {
-    background-color: #303030;
+    background-color: #272727;
     margin: 0;
     text-align: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -9,10 +9,11 @@ body {
 }
 
 .main-container{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #272727;
+    justify-content: center;
 }
 
 .sortcon{
@@ -22,8 +23,17 @@ body {
     padding: 10px 50px 0 50px;
 }
 
+@media screen and (max-width: 850px) {
+    .sortcon{
+        flex-direction: column;
+    }
+    .sap{
+        padding-top: 20px !important;
+    }
+}
+
 .container {
-    width: 47%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -36,6 +46,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     padding-top: 30vh;
     font-size: xx-large;
     color: #fff;
@@ -44,7 +55,7 @@ body {
 
 .container2 {
     width: 100%;
-    height: 70vh;
+    height: 65vh;
     display: flex;
     align-items: end;
     padding: 5px 0;
@@ -128,6 +139,7 @@ color: #ff652f;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 button{
