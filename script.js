@@ -7,21 +7,29 @@ const range = document.getElementById("range");
 const rangetext = document.getElementById("rangev");
 const sorts1 = document.getElementById("sorts1");
 const sorts2 = document.getElementById("sorts2");
-var obja, objb;
+const inum = document.getElementById("intext");
+var obja, objb,speed=300;
 
 function rangevalue(x) {
   rangetext.innerHTML = x;
-
 }
 
-function generate() {
-  obja = new Aswap("a");
-  objb = new Aswap("b");
+function speedvalue() {
+  let ele = document.getElementsByName("speed");
+  for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked)
+      speed = Number(ele[i].value);
+  }
+}
 
+
+function generate() {
+  let el = range.value;
+
+  obja = new Aswap("a",el);
+  objb = new Aswap("b",el);
   obja.checkScore.innerHTML = obja.swapScore.innerHTML = objb.checkScore.innerHTML = objb.swapScore.innerHTML = 0;
   container[0].innerHTML = container[1].innerHTML = "";
-
-  let el = range.value;
   let w = Math.floor((container[0].offsetWidth - (el - 1) * 4) / el);
 
   for (let i = 0; i < el; i++) {
@@ -48,8 +56,8 @@ class Polls {
 }
 
 class Aswap {
-  arr = [];
-  constructor(c) {
+  constructor(c,el) {
+    this.arr = new Array(el);
     this.c = c;
     this.checkScore = document.getElementById(`sc${this.c}`);
     this.swapScore = document.getElementById(`ss${this.c}`);
@@ -65,7 +73,7 @@ class Aswap {
 
     p1.div.style.left = `${ofset2}px`;
     p2.div.style.left = `${ofset1}px`;
-    await new Promise((r) => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, speed));
 
     p1.div.style.background = p2.div.style.background = defColor;
     this.swapScore.innerHTML = Number(this.swapScore.innerHTML) + 1;
@@ -73,7 +81,7 @@ class Aswap {
 
   async check(p1, p2) {
     p1.div.style.background = p2.div.style.background = checkColor;
-    await new Promise((r) => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, speed));
 
     p1.div.style.background = p2.div.style.background = defColor;
     this.checkScore.innerHTML = Number(this.checkScore.innerHTML) + 1;
@@ -127,7 +135,7 @@ class Aswap {
       }
       s = 0;
     }
-  }
+  }  
 }
 
 function startSorting() {

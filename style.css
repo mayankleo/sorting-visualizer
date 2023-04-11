@@ -161,7 +161,7 @@ button:hover{
 }
 
 
-.rangeiv{
+.rangeiv,.spradio{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -172,7 +172,7 @@ button:hover{
     border-radius: 15px;
     margin: 10px;
 }
-.rangeiv:hover{
+.rangeiv:hover,.spradio:hover{
     border: 1px solid #14a76c;
 }
 #range{
@@ -182,4 +182,12 @@ button:hover{
     width: 2pc;
     margin: 5px;
     color: #fff;
+}
+
+.spradio>span{
+    color: white;
+    padding-right: 8px;
+}
+.spradio>input{
+    cursor: pointer;
 }

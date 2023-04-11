@@ -61,11 +61,16 @@
             <div class="main-con">
                 <button onclick="generate()">Generate</button>
                 <div class="rangeiv">
-                    <input type="range" id="range" min="4" max="16" value="8" onchange="generate()"
+                    <input type="range" autocomplete="off" id="range" min="4" max="16" value="8" onchange="generate()"
                     oninput="rangevalue(this.value)">
                     <div id="rangev">8</div>
                 </div>
                 <button onclick="startSorting()">Start Sorting</button>
+                <div class="spradio">
+                    <input type="radio" autocomplete="off" name="speed" value="200" onchange="speedvalue()"><span>Fast</span>
+                    <input type="radio" autocomplete="off" name="speed" value="300" checked onchange="speedvalue()"><span>Normal</span>
+                    <input type="radio" autocomplete="off" name="speed" value="600" onchange="speedvalue()"><span>Slow</span>
+                </div>
             </div>
         </div>
 
