@@ -18,7 +18,7 @@ body {
 
 .heading{
     color: white;
-    margin: 1vh 50px;
+    margin: 1vh 4vw;
     padding: 6px;
     background-color: #272727;
     border-radius: 15px;
@@ -30,7 +30,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px 0 0 0;
-    margin: 0 50px;
+    margin: 0 4vw;
 
 }
 
@@ -147,7 +147,7 @@ color: #ff652f;
 
 .main-fluid{
     padding: 15px 0;
-    margin: 0 50px;
+    margin: 0 4vw;
     height: 100%;
     display: flex;
     justify-content: center;
