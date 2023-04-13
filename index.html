@@ -11,6 +11,7 @@
 
 <body>
     <div class="main-container">
+        <h1 class="heading">Quadratic Shot visulizer</h1>
         <div class="sortcon">
             <div class="container">
                 <div class="fun-selector">
@@ -59,18 +60,19 @@
 
         <div class="main-fluid">
             <div class="main-con">
-                <button onclick="generate()">Generate</button>
-                <div class="rangeiv">
+                <button onclick="generate()" id="sgen">Generate</button>
+                <div class="rangeiv" id="rangeiv">
                     <input type="range" autocomplete="off" id="range" min="4" max="16" value="8" onchange="generate()"
                     oninput="rangevalue(this.value)">
                     <div id="rangev">8</div>
                 </div>
-                <button onclick="startSorting()">Start Sorting</button>
+                <button onclick="startSorting()" id="sstarter" >Start Sorting</button>
                 <div class="spradio">
                     <input type="radio" autocomplete="off" name="speed" value="200" onchange="speedvalue()"><span>Fast</span>
                     <input type="radio" autocomplete="off" name="speed" value="300" checked onchange="speedvalue()"><span>Normal</span>
                     <input type="radio" autocomplete="off" name="speed" value="600" onchange="speedvalue()"><span>Slow</span>
                 </div>
+                <button onclick="stopbybt()" id="stop" disabled>Stop</button>
             </div>
         </div>
 

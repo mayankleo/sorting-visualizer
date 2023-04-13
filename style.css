@@ -16,11 +16,22 @@ body {
     justify-content: center;
 }
 
+.heading{
+    color: white;
+    margin: 1vh 50px;
+    padding: 6px;
+    background-color: #272727;
+    border-radius: 15px;
+    box-shadow: #373737 2px 2px 20px 0px;
+}
+
 .sortcon{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 50px 0 50px;
+    padding: 10px 0 0 0;
+    margin: 0 50px;
+
 }
 
 @media screen and (max-width: 850px) {
@@ -119,13 +130,24 @@ color: #ff652f;
 }
 .s-selector:hover{
     color: #14a76c;
+    border: 1px solid #14a76c;
 }
+
+.s-selector[disabled]{
+    color: #696969;
+    border: 1px solid #696969;
+}
+.s-selector[disabled]:hover{
+    border: 1px solid #14a76c;
+}
+
 .s-selector>*{
     font-weight: 600;
 }
 
 .main-fluid{
-    padding: 15px 50px 15px 50px;
+    padding: 15px 0;
+    margin: 0 50px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -160,7 +182,6 @@ button:hover{
     color: #14a76c;
 }
 
-
 .rangeiv,.spradio{
     display: flex;
     justify-content: space-between;
@@ -173,7 +194,7 @@ button:hover{
     margin: 10px;
 }
 .rangeiv:hover,.spradio:hover{
-    border: 1px solid #14a76c;
+    border: 1px solid #14a76c !important;
 }
 #range{
     margin: 0 10px;
@@ -190,4 +211,28 @@ button:hover{
 }
 .spradio>input{
     cursor: pointer;
+    margin: 0 4px;
+}
+
+
+button[disabled]{
+    color: #696969;
+    border: 1px solid #696969;
+}
+button[disabled]:hover{
+    border: 1px solid #14a76c;
+}
+
+#stop{
+    color: #fff;
+    border: 1px solid #fff;
+}
+#stop:hover{
+    color: #ff652f;
+    border: 2px solid #ff652f;
+}
+
+#stop:disabled{
+    color: #696969;
+    border: 1px solid #696969;
 }

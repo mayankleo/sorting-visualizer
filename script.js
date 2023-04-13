@@ -3,12 +3,17 @@ const checkColor = "#ffe400";
 const swapColor = "#ff652f";
 
 const container = document.getElementsByClassName("container2");
+const rangeiv = document.getElementById("rangeiv");
 const range = document.getElementById("range");
 const rangetext = document.getElementById("rangev");
 const sorts1 = document.getElementById("sorts1");
 const sorts2 = document.getElementById("sorts2");
 const inum = document.getElementById("intext");
-var obja, objb,speed=300;
+const sgen = document.getElementById("sgen");
+const ssat = document.getElementById("sstarter");
+const sstop = document.getElementById("stop");
+
+var obja, objb, speed = 300, istop = true;
 
 function rangevalue(x) {
   rangetext.innerHTML = x;
@@ -16,8 +21,8 @@ function rangevalue(x) {
 
 function speedvalue() {
   let ele = document.getElementsByName("speed");
-  for(i = 0; i < ele.length; i++) {
-      if(ele[i].checked)
+  for (i = 0; i < ele.length; i++) {
+    if (ele[i].checked)
       speed = Number(ele[i].value);
   }
 }
@@ -26,8 +31,8 @@ function speedvalue() {
 function generate() {
   let el = range.value;
 
-  obja = new Aswap("a",el);
-  objb = new Aswap("b",el);
+  obja = new Aswap("a", el);
+  objb = new Aswap("b", el);
   obja.checkScore.innerHTML = obja.swapScore.innerHTML = objb.checkScore.innerHTML = objb.swapScore.innerHTML = 0;
   container[0].innerHTML = container[1].innerHTML = "";
   let w = Math.floor((container[0].offsetWidth - (el - 1) * 4) / el);
@@ -56,9 +61,10 @@ class Polls {
 }
 
 class Aswap {
-  constructor(c,el) {
+  constructor(c, el) {
     this.arr = new Array(el);
     this.c = c;
+    this.isstop = true;
     this.checkScore = document.getElementById(`sc${this.c}`);
     this.swapScore = document.getElementById(`ss${this.c}`);
   }
@@ -88,8 +94,13 @@ class Aswap {
   }
 
   async bubbleSort() {
+    this.isstop = false;
     for (let i = 0; i < this.arr.length; i++) {
       for (let j = 0; j < this.arr.length - i - 1; j++) {
+        if(istop){
+          this.isstop=true;
+          break
+        }
         await this.check(this.arr[j], this.arr[j + 1]);
         if (this.arr[j].no > this.arr[j + 1].no) {
           [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
@@ -97,12 +108,19 @@ class Aswap {
         }
       }
     }
+    this.isstop=true;
+    stop();
   }
 
   async selectionSort() {
+    this.isstop = false;
     for (let i = 0; i < this.arr.length; i++) {
       let min = i;
       for (let j = i + 1; j < this.arr.length; j++) {
+        if(istop){
+          this.isstop=true;
+          break
+        }
         await this.check(this.arr[min], this.arr[j]);
         if (this.arr[min].no > this.arr[j].no) {
           min = j;
@@ -113,18 +131,28 @@ class Aswap {
         await this.swap(this.arr[i], this.arr[min]);
       }
     }
+    this.isstop=true;
+    stop();
   }
 
   async insertionSort() {
-    let j,
-      s = 0;
+    this.isstop = false;
+    let j,s = 0;
     for (let i = 1; i < this.arr.length; i++) {
+      if(istop){
+        this.isstop=true;
+        break
+      }
       j = i - 1;
       if (s == 0) {
         await this.check(this.arr[j], this.arr[j + 1]);
         s = 1;
       }
       while (j >= 0 && this.arr[j].no > this.arr[j + 1].no) {
+        if(istop){
+          this.isstop=true;
+          break
+        }
         if (s == 0) {
           await this.check(this.arr[j], this.arr[j + 1]);
         }
@@ -135,10 +163,46 @@ class Aswap {
       }
       s = 0;
     }
-  }  
+    this.isstop=true;
+    stop();
+  }
+}
+
+function stop(){
+  if(obja.isstop==true && objb.isstop==true){
+    istop = true;
+    sgen.removeAttribute('disabled');
+    sorts1.removeAttribute('disabled');
+    sorts2.removeAttribute('disabled');
+    range.removeAttribute('disabled');
+    rangeiv.style.borderColor="#fff";
+    rangetext.style.color="#fff";
+    ssat.removeAttribute('disabled');
+    sstop.setAttribute('disabled', '');
+  }
+}
+
+function stopbybt(){
+  obja.isstop = true;
+  objb.isstop = true;
+  istop = true;
+  stop();
+}
+
+function btdisabler(){
+  sgen.setAttribute('disabled', '');
+  sorts1.setAttribute('disabled', '');
+  sorts2.setAttribute('disabled', '');
+  range.setAttribute('disabled', '');
+  rangeiv.style.borderColor="#696969";
+  rangetext.style.color="#696969";
+  ssat.setAttribute('disabled', '');
+  sstop.removeAttribute('disabled');
+  istop = false;
 }
 
 function startSorting() {
+  btdisabler();
   let sort1 = sorts1.value;
   let sort2 = sorts2.value;
   switch (sort1) {
