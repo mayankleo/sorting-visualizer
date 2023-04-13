@@ -34,6 +34,7 @@ function generate() {
   obja = new Aswap("a", el);
   objb = new Aswap("b", el);
   obja.checkScore.innerHTML = obja.swapScore.innerHTML = objb.checkScore.innerHTML = objb.swapScore.innerHTML = 0;
+  container[0].style.width = container[1].style.width = "100%";
   container[0].innerHTML = container[1].innerHTML = "";
   let w = Math.floor((container[0].offsetWidth - (el - 1) * 4) / el);
 
